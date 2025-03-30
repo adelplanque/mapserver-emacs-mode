@@ -157,9 +157,9 @@
     mapserver-mode-syntax-table)
   "Syntax table for mapserver-mode")
 
-(defun mapserver-mode ()
-  (interactive)
-  (kill-all-local-variables)
+;;;###autoload
+(define-derived-mode mapserver-mode fundamental-mode "MapServer"
+  "Mode for editing mapfiles."
   (use-local-map mapserver-mode-map)
   (set-syntax-table mapserver-mode-syntax-table)
   ;; Set up font-lock
@@ -167,9 +167,6 @@
   ;; Register our indentation function
   (set (make-local-variable 'indent-line-function) 'mapserver-indent-line)
   (set (make-local-variable 'tab-width) mapserver-mode-tab-width)
-  (setq major-mode 'mapserver-mode)
-  (setq mode-name "MapServer")
-  (run-hooks 'mapserver-mode-hook)
   (setq comment-start "#"))
 
 
